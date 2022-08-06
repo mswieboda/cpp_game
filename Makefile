@@ -8,7 +8,7 @@ clean:
 	if [ -a ./build/main.o ]; then rm ./build/main.o; fi;
 
 build/main.o:
-	${CC} main.cpp -o build/main.o ${ALLEGRO_FLAGS}
+	${CC} src/main.cpp -o build/main.o ${ALLEGRO_FLAGS}
 
 run: build/main.o
 	./build/main.o
