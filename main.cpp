@@ -4,22 +4,34 @@
 #include <allegro5/allegro_image.h>
 #include <stdbool.h>
 
+void check_init(bool test, const char *description) {
+    if (test) return;
+
+    printf("couldn't initialize %s\n", description);
+    exit(1);
+}
+
 int main(int argc, char **argv) {
-  al_init();
-  al_init_font_addon();
-  al_init_ttf_addon();
-  al_init_image_addon();
-  al_install_keyboard();
+  check_init(al_init(), "allegro");
+  check_init(al_init_font_addon(), "font addon");
+  check_init(al_init_ttf_addon(), "ttf addon");
+  check_init(al_init_image_addon(), "image addon");
+  check_init(al_install_keyboard(), "keyboard");
 
   ALLEGRO_TIMER* timer = al_create_timer(1.0 / 30.0);
+  check_init(timer, "timer");
+
   ALLEGRO_EVENT_QUEUE* queue = al_create_event_queue();
+  check_init(queue, "queue");
+
   ALLEGRO_DISPLAY* display = al_create_display(1024, 780);
+  check_init(display, "display");
+
   ALLEGRO_FONT* font = al_load_font("./assets/fonts/PressStart2P.ttf", 64, 0);
+  check_init(font, "font");
+
   ALLEGRO_BITMAP* image = al_load_bitmap("./assets/images/mysha.png");
-  if (!image) {
-    printf("couldn't load image\n");
-    return 1;
-  }
+  check_init(image, "image");
 
   al_register_event_source(queue, al_get_keyboard_event_source());
   al_register_event_source(queue, al_get_display_event_source(display));
