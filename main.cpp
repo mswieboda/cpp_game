@@ -26,6 +26,11 @@ int main(int argc, char **argv) {
   ALLEGRO_EVENT_QUEUE* queue = al_create_event_queue();
   check_init(queue, "queue");
 
+  // DISPLAY options for anti-aliasing
+  al_set_new_display_option(ALLEGRO_SAMPLE_BUFFERS, 1, ALLEGRO_SUGGEST);
+  al_set_new_display_option(ALLEGRO_SAMPLES, 8, ALLEGRO_SUGGEST);
+  al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
+
   ALLEGRO_DISPLAY* display = al_create_display(1024, 780);
   check_init(display, "display");
 
@@ -34,6 +39,13 @@ int main(int argc, char **argv) {
 
   ALLEGRO_BITMAP* image = al_load_bitmap("./assets/images/mysha.png");
   check_init(image, "image");
+
+  ALLEGRO_VERTEX gradient_vertices[] = {
+    { .x = 100, .y = 320, .z = 0, .color = al_map_rgb_f(1, 0, 0) },
+    { .x = 500, .y = 320, .z = 0, .color = al_map_rgb_f(0, 1, 0) },
+    { .x = 100, .y = 640, .z = 0, .color = al_map_rgb_f(0, 0, 1) },
+    { .x = 500, .y = 640, .z = 0, .color = al_map_rgb_f(1, 1, 0) },
+  };
 
   al_register_event_source(queue, al_get_keyboard_event_source());
   al_register_event_source(queue, al_get_display_event_source(display));
@@ -66,9 +78,6 @@ int main(int argc, char **argv) {
       // clear background
       al_clear_to_color(al_map_rgb(0, 0, 0));
 
-      // text
-      al_draw_text(font, al_map_rgb_f(0, 1, 0), 1024 / 2, 780 / 2, ALLEGRO_ALIGN_CENTRE, "hello world!");
-
       // image
       al_draw_bitmap(image, 100, 100, 0);
 
@@ -78,6 +87,12 @@ int main(int argc, char **argv) {
       al_draw_circle(450, 370, 30, al_map_rgb_f(1, 0, 1), 2);
       al_draw_line(440, 110, 460, 210, al_map_rgb_f(1, 0, 0), 1);
       al_draw_line(500, 220, 570, 200, al_map_rgb_f(1, 1, 0), 1);
+
+      // gradient
+      al_draw_prim(gradient_vertices, NULL, NULL, 0, 4, ALLEGRO_PRIM_TRIANGLE_STRIP);
+
+      // text
+      al_draw_text(font, al_map_rgb_f(0, 1, 0), 1024 / 2, 780 / 2, ALLEGRO_ALIGN_CENTRE, "hello world!");
 
       // commit drawing
       al_flip_display();
