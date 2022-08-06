@@ -12,6 +12,24 @@ void check_init(bool test, const char *description) {
     exit(1);
 }
 
+enum BOUNCER_TYPE {
+  BT_HELLO = 0,
+  BT_IMAGE,
+  BT_TRIANGLE,
+  BT_RECTANGLE_1,
+  BT_RECTANGLE_2,
+  BT_CIRCLE,
+  BT_LINE_1,
+  BT_LINE_2,
+  BT_N
+};
+
+typedef struct BOUNCER {
+  float x, y;
+  float dx, dy;
+  int type;
+} BOUNCER;
+
 int main(int argc, char **argv) {
   check_init(al_init(), "allegro");
   check_init(al_install_keyboard(), "keyboard");
@@ -19,6 +37,9 @@ int main(int argc, char **argv) {
   check_init(al_init_ttf_addon(), "ttf addon");
   check_init(al_init_image_addon(), "image addon");
   check_init(al_init_primitives_addon(), "primitives addon");
+
+  int width = 2048;
+  int height = 1440;
 
   ALLEGRO_TIMER* timer = al_create_timer(1.0 / 30.0);
   check_init(timer, "timer");
@@ -31,7 +52,7 @@ int main(int argc, char **argv) {
   al_set_new_display_option(ALLEGRO_SAMPLES, 8, ALLEGRO_SUGGEST);
   al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
 
-  ALLEGRO_DISPLAY* display = al_create_display(1024, 780);
+  ALLEGRO_DISPLAY* display = al_create_display(width, height);
   check_init(display, "display");
 
   ALLEGRO_FONT* font = al_load_font("./assets/fonts/PressStart2P.ttf", 64, 0);
@@ -46,6 +67,16 @@ int main(int argc, char **argv) {
     { .x = 100, .y = 640, .z = 0, .color = al_map_rgb_f(0, 0, 1) },
     { .x = 500, .y = 640, .z = 0, .color = al_map_rgb_f(1, 1, 0) },
   };
+
+  BOUNCER obj[BT_N];
+  for(int i = 0; i < BT_N; i++) {
+    BOUNCER* b = &obj[i];
+    b->x = rand() % width;
+    b->y = rand() % height;
+    b->dx = ((((float)rand()) / RAND_MAX) - 0.5) * 2 * 10;
+    b->dy = ((((float)rand()) / RAND_MAX) - 0.5) * 2 * 10;
+    b->type = i;
+  }
 
   al_register_event_source(queue, al_get_keyboard_event_source());
   al_register_event_source(queue, al_get_display_event_source(display));
@@ -62,7 +93,30 @@ int main(int argc, char **argv) {
 
     switch(event.type) {
       case ALLEGRO_EVENT_TIMER:
-        // game logic goes here.
+        // START GAME LOGIC
+        for (int i = 0; i < BT_N; i++) {
+          BOUNCER* b = &obj[i];
+          b->x += b->dx;
+          b->y += b->dy;
+
+          if (b->x < 0) {
+            b->x  *= -1;
+            b->dx *= -1;
+          } else if (b->x > width) {
+            b->x -= (b->x - width);
+            b->dx *= -1;
+          }
+
+          if (b->y < 0) {
+            b->y  *= -1;
+            b->dy *= -1;
+          } else if (b->y > height) {
+            b->x -= (b->y - height);
+            b->dy *= -1;
+          }
+        }
+        // END GAME LOGIC
+
         redraw = true;
         break;
       case ALLEGRO_EVENT_KEY_DOWN:
@@ -93,6 +147,52 @@ int main(int argc, char **argv) {
 
       // text
       al_draw_text(font, al_map_rgb_f(0, 1, 0), 1024 / 2, 780 / 2, ALLEGRO_ALIGN_CENTRE, "hello world!");
+
+      // bouncing stuff
+      ALLEGRO_VERTEX v[4];
+
+      for(int i = 0; i < BT_N; i++) {
+        BOUNCER* b = &obj[i];
+
+        switch(b->type) {
+          case BT_HELLO:
+            al_draw_text(font, al_map_rgb_f(0, 1, 0), b->x, b->y, ALLEGRO_ALIGN_CENTRE, "hello world!");
+            break;
+
+          case BT_IMAGE:
+            al_draw_bitmap(image, b->x, b->y, 0);
+            break;
+
+          case BT_TRIANGLE:
+            al_draw_filled_triangle(b->x, b->y, b->x + 50, b->y + 25, b->x, b->y + 50, al_map_rgb_f(0, 1, 0));
+            break;
+
+          case BT_RECTANGLE_1:
+            al_draw_filled_rectangle(b->x, b->y, b->x + 100, b->y + 80, al_map_rgba_f(0, 0, 0.5, 0.5));
+            break;
+
+          case BT_RECTANGLE_2:
+            v[0].x = b->x;       v[0].y = b->y;       v[0].z = 0; v[0].color = al_map_rgb_f(1, 0, 0);
+            v[1].x = b->x + 120; v[1].y = b->y;       v[1].z = 0; v[1].color = al_map_rgb_f(0, 1, 0);
+            v[2].x = b->x;       v[2].y = b->y + 100; v[2].z = 0; v[2].color = al_map_rgb_f(0, 0, 1);
+            v[3].x = b->x + 120; v[3].y = b->y + 100; v[3].z = 0; v[3].color = al_map_rgb_f(1, 1, 0);
+
+            al_draw_prim(v, NULL, NULL, 0, 4, ALLEGRO_PRIM_TRIANGLE_STRIP);
+            break;
+
+          case BT_CIRCLE:
+            al_draw_circle(b->x, b->y, 30, al_map_rgb_f(1, 0, 1), 2);
+            break;
+
+          case BT_LINE_1:
+            al_draw_line(b->x, b->y, b->x + 20, b->y + 100, al_map_rgb_f(1, 0, 0), 1);
+            break;
+
+          case BT_LINE_2:
+            al_draw_line(b->x, b->y, b->x + 70, b->y - 20, al_map_rgb_f(1, 1, 0), 1);
+            break;
+        }
+      }
 
       // commit drawing
       al_flip_display();
