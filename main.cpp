@@ -2,6 +2,7 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_image.h>
+#include <allegro5/allegro_primitives.h>
 #include <stdbool.h>
 
 void check_init(bool test, const char *description) {
@@ -13,10 +14,11 @@ void check_init(bool test, const char *description) {
 
 int main(int argc, char **argv) {
   check_init(al_init(), "allegro");
+  check_init(al_install_keyboard(), "keyboard");
   check_init(al_init_font_addon(), "font addon");
   check_init(al_init_ttf_addon(), "ttf addon");
   check_init(al_init_image_addon(), "image addon");
-  check_init(al_install_keyboard(), "keyboard");
+  check_init(al_init_primitives_addon(), "primitives addon");
 
   ALLEGRO_TIMER* timer = al_create_timer(1.0 / 30.0);
   check_init(timer, "timer");
@@ -61,9 +63,23 @@ int main(int argc, char **argv) {
       break;
 
     if (redraw && al_is_event_queue_empty(queue)) {
+      // clear background
       al_clear_to_color(al_map_rgb(0, 0, 0));
-      al_draw_text(font, al_map_rgb(0, 255, 0), 1024 / 2, 780 / 2, ALLEGRO_ALIGN_CENTRE, "hello world!");
+
+      // text
+      al_draw_text(font, al_map_rgb_f(0, 1, 0), 1024 / 2, 780 / 2, ALLEGRO_ALIGN_CENTRE, "hello world!");
+
+      // image
       al_draw_bitmap(image, 100, 100, 0);
+
+      // primitives
+      al_draw_filled_triangle(35, 350, 85, 375, 35, 400, al_map_rgb_f(0, 1, 0));
+      al_draw_filled_rectangle(240, 260, 340, 340, al_map_rgba_f(0, 0, 0.5, 0.5));
+      al_draw_circle(450, 370, 30, al_map_rgb_f(1, 0, 1), 2);
+      al_draw_line(440, 110, 460, 210, al_map_rgb_f(1, 0, 0), 1);
+      al_draw_line(500, 220, 570, 200, al_map_rgb_f(1, 1, 0), 1);
+
+      // commit drawing
       al_flip_display();
 
       redraw = false;

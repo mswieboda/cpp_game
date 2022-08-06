@@ -1,6 +1,6 @@
 SHELL = /bin/sh
 CC = g++
-ALLEGRO_FLAGS = $$(pkg-config allegro-5 allegro_main-5 allegro_font-5 allegro_ttf-5 allegro_image-5 --libs --cflags)
+ALLEGRO_FLAGS = $$(pkg-config allegro-5 allegro_main-5 allegro_font-5 allegro_ttf-5 allegro_image-5 allegro_primitives-5 --libs --cflags)
 
 build_and_run: clean run
 
