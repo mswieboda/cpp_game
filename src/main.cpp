@@ -6,6 +6,7 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_primitives.h>
 
+#include "MainMenu.h"
 #include "GameScene.h"
 
 void check_init(bool test, const char *description) {
@@ -55,7 +56,9 @@ int main(int argc, char **argv) {
   bool redraw = true;
   ALLEGRO_EVENT event;
 
-  GameScene gameScene("Start Menu");
+  MainMenu mainMenu("Main Menu");
+  GameScene gameScene("Game");
+  Scene *scene = &mainMenu;
 
   #define KEY_SEEN     1
   #define KEY_RELEASED 2
@@ -70,8 +73,14 @@ int main(int argc, char **argv) {
 
     switch(event.type) {
       case ALLEGRO_EVENT_TIMER:
+        if (key[ALLEGRO_KEY_1])
+          scene = &mainMenu;
+
+        if (key[ALLEGRO_KEY_2])
+          scene = &gameScene;
+
         // START GAME LOGIC
-        gameScene.update(key);
+        scene->update(key);
 
         if (key[ALLEGRO_KEY_ESCAPE])
           done = true;
@@ -109,9 +118,7 @@ int main(int argc, char **argv) {
       // clear background
       al_clear_to_color(al_map_rgb(0, 0, 0));
 
-      gameScene.draw();
-
-      // al_draw_text(font, al_map_rgb(0, 255, 0), 1024 / 2, 780 / 2, ALLEGRO_ALIGN_CENTRE, gameScene.getNameChars());
+      scene->draw();
 
       // commit drawing
       al_flip_display();

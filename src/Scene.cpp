@@ -17,9 +17,9 @@ const char * Scene::getNameChars() {
 }
 
 void Scene::update(unsigned char * key) {
-  cout << ">>> " << name << " update" << endl;
+  cout << ">>> Scene " << name << " update" << endl;
 }
 
 void Scene::draw() {
-  cout << ">>> " << name << " draw" << endl;
+  cout << ">>> Scene " << name << " draw" << endl;
 }
