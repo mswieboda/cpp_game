@@ -14,13 +14,13 @@ GameScene::GameScene(string _name): Scene(_name), box(333, 555, 300, 300), boxSp
 }
 
 void GameScene::update(Keys keys) {
-  if (keys.isPressed(ALLEGRO_KEY_UP) || keys.isPressed(ALLEGRO_KEY_W))
+  if (keys.anyPressed(2, ALLEGRO_KEY_UP, ALLEGRO_KEY_W))
     box.y -= boxSpeed;
-  if (keys.isPressed(ALLEGRO_KEY_DOWN) || keys.isPressed(ALLEGRO_KEY_S))
+  if (keys.anyPressed(2, ALLEGRO_KEY_DOWN, ALLEGRO_KEY_S))
     box.y += boxSpeed;
-  if (keys.isPressed(ALLEGRO_KEY_LEFT) || keys.isPressed(ALLEGRO_KEY_A))
+  if (keys.anyPressed(2, ALLEGRO_KEY_LEFT, ALLEGRO_KEY_A))
     box.x -= boxSpeed;
-  if (keys.isPressed(ALLEGRO_KEY_RIGHT) || keys.isPressed(ALLEGRO_KEY_D))
+  if (keys.anyPressed(2, ALLEGRO_KEY_RIGHT, ALLEGRO_KEY_D))
     box.x += boxSpeed;
 }
 

@@ -61,11 +61,6 @@ int main(int argc, char **argv) {
   GameScene gameScene("Game");
   Scene *scene = &mainMenu;
 
-  // #define KEY_SEEN     1
-  // #define KEY_RELEASED 2
-
-  // unsigned char key[ALLEGRO_KEY_MAX];
-  // memset(key, 0, sizeof(key));
   Keys keys;
 
   al_start_timer(timer);
@@ -75,19 +70,21 @@ int main(int argc, char **argv) {
 
     switch(event.type) {
       case ALLEGRO_EVENT_TIMER:
+        // TODO: vvv put in scene manager
         if (keys.isPressed(ALLEGRO_KEY_1))
           scene = &mainMenu;
 
         if (keys.isPressed(ALLEGRO_KEY_2))
           scene = &gameScene;
 
-        // // START GAME LOGIC
-        scene->update(keys);
-
         if (keys.isPressed(ALLEGRO_KEY_ESCAPE))
           done = true;
+        // TODO: ^^^ put in scene manager
 
-        // // END GAME LOGIC
+        // START GAME LOGIC
+        scene->update(keys);
+
+        // END GAME LOGIC
         keys.reset();
 
         redraw = true;
@@ -109,7 +106,6 @@ int main(int argc, char **argv) {
       case ALLEGRO_EVENT_DISPLAY_CLOSE:
         done = true;
         break;
-
     }
 
     if (done)

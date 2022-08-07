@@ -1,5 +1,6 @@
+#include <cstdarg>
+#include <iostream>
 #include <allegro5/allegro5.h>
-
 #include "Keys.h"
 
 using namespace std;
@@ -26,6 +27,25 @@ void Keys::released(int keycode) {
 
 bool Keys::isPressed(int keycode) {
   return keys[keycode];
+}
+
+bool Keys::anyPressed(const int count, ...) {
+  va_list args;
+  va_start(args, count);
+
+  for (int i = 0; i < count; i++) {
+    int keycode = va_arg(args, int);
+
+    if (isPressed(keycode)) {
+      cout << endl;
+      return true;
+    }
+  }
+
+  va_end(args);
+
+  cout << endl;
+  return false;
 }
 
 // bool Keys::isReleased(int keycode) {
