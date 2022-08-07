@@ -63,7 +63,7 @@ int main(int argc, char **argv) {
   ALLEGRO_EVENT event;
 
   MainMenu mainMenu("Main Menu");
-  GameScene gameScene("Game", FPS);
+  GameScene gameScene("Game");
   Scene *scene = &mainMenu;
   Keys keys;
 

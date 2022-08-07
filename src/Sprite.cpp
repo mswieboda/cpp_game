@@ -1,13 +1,10 @@
 #include <iostream>
-#include <allegro5/allegro5.h>
 #include <allegro5/allegro_image.h>
 #include "Sprite.h"
 
 using namespace std;
 
 Sprite::Sprite(int _fpsFactor, bool _centered) {
-  x = 0;
-  y = 0;
   height = 0;
   width = 0;
   frame = 0;
@@ -52,7 +49,7 @@ void Sprite::update() {
     frame = 0;
 }
 
-void Sprite::draw() {
+void Sprite::draw(int x, int y) {
   ALLEGRO_BITMAP* sprite = sprites[displayFrame()];
   int drawX = x;
   int drawY = y;

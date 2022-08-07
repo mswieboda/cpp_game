@@ -2,7 +2,8 @@
 #define _SPRITE_H
 
 #include <vector>
-#include <allegro5/allegro_image.h>
+#include <allegro5/allegro5.h>
+// #include <allegro5/allegro_image.h>
 
 using namespace std;
 
@@ -14,12 +15,10 @@ class Sprite {
     void addBlank(int w, int h);
     int displayFrame();
     void update();
-    void draw();
+    void draw(int x, int y);
     void destroy();
 
     vector<ALLEGRO_BITMAP*> sprites;
-    int x;
-    int y;
     int width;
     int height;
     int frame;

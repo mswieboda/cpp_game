@@ -1,22 +1,23 @@
 #ifndef _GAME_SCENE_H
 #define _GAME_SCENE_H
 
+// #include <allegro5/allegro_image.h>
+
 #include "Scene.h"
 #include "Keys.h"
-#include "Sprite.h"
+#include "Player.h"
 
 using namespace std;
 
 class GameScene: public Scene {
   public:
-    GameScene(string name, int gameFps);
+    GameScene(string name);
 
     void update(Keys keys);
     void draw();
     void destroy();
 
-    const float boxSpeed;
-    Sprite sprite;
+    Player player;
     ALLEGRO_BITMAP* sheet;
 };
 
