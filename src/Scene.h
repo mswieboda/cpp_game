@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include "Keys.h"
+
 using namespace std;
 
 class Scene {
@@ -11,7 +13,7 @@ class Scene {
 
     string getName();
     const char * getNameChars();
-    virtual void update(unsigned char * key);
+    virtual void update(Keys keys);
     virtual void draw();
 
   protected:

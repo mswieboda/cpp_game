@@ -5,6 +5,7 @@
 
 #include "Scene.h"
 #include "MainMenu.h"
+#include "Keys.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ MainMenu::MainMenu(string _name): Scene(_name) {
   fontNormal = al_load_font("./assets/fonts/PressStart2P.ttf", 24, 0);
 }
 
-void MainMenu::update(unsigned char * key) {
+void MainMenu::update(Keys keys) {
   
 }
 

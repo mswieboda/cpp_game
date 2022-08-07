@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "Scene.h"
+#include "Keys.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ const char * Scene::getNameChars() {
   return name.c_str();
 }
 
-void Scene::update(unsigned char * key) {
+void Scene::update(Keys keys) {
   cout << ">>> Scene " << name << " update" << endl;
 }
 

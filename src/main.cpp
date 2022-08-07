@@ -6,6 +6,7 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_primitives.h>
 
+#include "Keys.h"
 #include "MainMenu.h"
 #include "GameScene.h"
 
@@ -60,11 +61,12 @@ int main(int argc, char **argv) {
   GameScene gameScene("Game");
   Scene *scene = &mainMenu;
 
-  #define KEY_SEEN     1
-  #define KEY_RELEASED 2
+  // #define KEY_SEEN     1
+  // #define KEY_RELEASED 2
 
-  unsigned char key[ALLEGRO_KEY_MAX];
-  memset(key, 0, sizeof(key));
+  // unsigned char key[ALLEGRO_KEY_MAX];
+  // memset(key, 0, sizeof(key));
+  Keys keys;
 
   al_start_timer(timer);
 
@@ -73,21 +75,20 @@ int main(int argc, char **argv) {
 
     switch(event.type) {
       case ALLEGRO_EVENT_TIMER:
-        if (key[ALLEGRO_KEY_1])
+        if (keys.isPressed(ALLEGRO_KEY_1))
           scene = &mainMenu;
 
-        if (key[ALLEGRO_KEY_2])
+        if (keys.isPressed(ALLEGRO_KEY_2))
           scene = &gameScene;
 
-        // START GAME LOGIC
-        scene->update(key);
+        // // START GAME LOGIC
+        scene->update(keys);
 
-        if (key[ALLEGRO_KEY_ESCAPE])
+        if (keys.isPressed(ALLEGRO_KEY_ESCAPE))
           done = true;
 
-        for (int i = 0; i < ALLEGRO_KEY_MAX; i++)
-          key[i] &= KEY_SEEN;
-        // END GAME LOGIC
+        // // END GAME LOGIC
+        keys.reset();
 
         redraw = true;
         break;
@@ -98,11 +99,11 @@ int main(int argc, char **argv) {
         break;
 
       case ALLEGRO_EVENT_KEY_DOWN:
-        key[event.keyboard.keycode] = KEY_SEEN | KEY_RELEASED;
+        keys.pressed(event.keyboard.keycode);
         break;
 
       case ALLEGRO_EVENT_KEY_UP:
-        key[event.keyboard.keycode] &= KEY_RELEASED;
+        keys.released(event.keyboard.keycode);
         break;
 
       case ALLEGRO_EVENT_DISPLAY_CLOSE:
