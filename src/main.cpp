@@ -4,11 +4,14 @@
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_image.h>
 #include <allegro5/allegro_primitives.h>
 
 #include "Keys.h"
 #include "MainMenu.h"
 #include "GameScene.h"
+
+#define FPS 60
 
 void check_init(bool test, const char *description) {
     if (test) return;
@@ -23,12 +26,13 @@ int main(int argc, char **argv) {
   check_init(al_install_mouse(), "mouse");
   check_init(al_init_font_addon(), "font addon");
   check_init(al_init_ttf_addon(), "ttf addon");
+  check_init(al_init_image_addon(), "image addon");
   check_init(al_init_primitives_addon(), "primitives addon");
 
   int width = 2048;
   int height = 1440;
 
-  ALLEGRO_TIMER* timer = al_create_timer(1.0 / 30.0);
+  ALLEGRO_TIMER* timer = al_create_timer(1.0 / FPS);
   check_init(timer, "timer");
 
   ALLEGRO_EVENT_QUEUE* queue = al_create_event_queue();
@@ -55,9 +59,8 @@ int main(int argc, char **argv) {
   ALLEGRO_EVENT event;
 
   MainMenu mainMenu("Main Menu");
-  GameScene gameScene("Game");
+  GameScene gameScene("Game", FPS);
   Scene *scene = &mainMenu;
-
   Keys keys;
 
   al_start_timer(timer);

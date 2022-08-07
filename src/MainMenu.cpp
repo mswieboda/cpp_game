@@ -11,8 +11,8 @@ using namespace std;
 
 MainMenu::MainMenu(string _name): Scene(_name) {
   name = _name;
-  fontBig = al_load_font("./assets/fonts/PressStart2P.ttf", 64, 0);
-  fontNormal = al_load_font("./assets/fonts/PressStart2P.ttf", 24, 0);
+  fontBig = al_load_font("./assets/PressStart2P.ttf", 64, 0);
+  fontNormal = al_load_font("./assets/PressStart2P.ttf", 24, 0);
 }
 
 void MainMenu::update(Keys keys) {

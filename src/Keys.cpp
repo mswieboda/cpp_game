@@ -37,14 +37,12 @@ bool Keys::anyPressed(const int count, ...) {
     int keycode = va_arg(args, int);
 
     if (isPressed(keycode)) {
-      cout << endl;
       return true;
     }
   }
 
   va_end(args);
 
-  cout << endl;
   return false;
 }
 
