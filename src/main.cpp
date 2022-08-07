@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_primitives.h>
 
-#include "Box.h"
+#include "GameScene.h"
 
 void check_init(bool test, const char *description) {
     if (test) return;
@@ -20,7 +21,6 @@ int main(int argc, char **argv) {
   check_init(al_install_mouse(), "mouse");
   check_init(al_init_font_addon(), "font addon");
   check_init(al_init_ttf_addon(), "ttf addon");
-  // check_init(al_init_image_addon(), "image addon");
   check_init(al_init_primitives_addon(), "primitives addon");
 
   int width = 2048;
@@ -43,9 +43,6 @@ int main(int argc, char **argv) {
   ALLEGRO_FONT* font = al_load_font("./assets/fonts/PressStart2P.ttf", 64, 0);
   check_init(font, "font");
 
-  // ALLEGRO_BITMAP* image = al_load_bitmap("./assets/images/mysha.png");
-  // check_init(image, "image");
-
   al_hide_mouse_cursor(display);
 
   // add events to the event queue
@@ -58,9 +55,7 @@ int main(int argc, char **argv) {
   bool redraw = true;
   ALLEGRO_EVENT event;
 
-  Box box(333, 555, 300, 300);
-
-  const float boxSpeed = 10;
+  GameScene gameScene("Start Menu");
 
   #define KEY_SEEN     1
   #define KEY_RELEASED 2
@@ -76,14 +71,7 @@ int main(int argc, char **argv) {
     switch(event.type) {
       case ALLEGRO_EVENT_TIMER:
         // START GAME LOGIC
-        if (key[ALLEGRO_KEY_UP] || key[ALLEGRO_KEY_W])
-          box.y -= boxSpeed;
-        if (key[ALLEGRO_KEY_DOWN] || key[ALLEGRO_KEY_S])
-          box.y += boxSpeed;
-        if (key[ALLEGRO_KEY_LEFT] || key[ALLEGRO_KEY_A])
-          box.x -= boxSpeed;
-        if (key[ALLEGRO_KEY_RIGHT] || key[ALLEGRO_KEY_D])
-          box.x += boxSpeed;
+        gameScene.update(key);
 
         if (key[ALLEGRO_KEY_ESCAPE])
           done = true;
@@ -96,8 +84,8 @@ int main(int argc, char **argv) {
         break;
 
       case ALLEGRO_EVENT_MOUSE_AXES:
-        box.x = event.mouse.x;
-        box.y = event.mouse.y;
+        // box.x = event.mouse.x;
+        // box.y = event.mouse.y;
         break;
 
       case ALLEGRO_EVENT_KEY_DOWN:
@@ -121,11 +109,9 @@ int main(int argc, char **argv) {
       // clear background
       al_clear_to_color(al_map_rgb(0, 0, 0));
 
-      // image
-      // al_draw_bitmap(image, 100, 100, 0);
+      gameScene.draw();
 
-      // primitives
-      al_draw_filled_rectangle(box.x, box.y, box.x + box.width, box.y + box.height, al_map_rgb_f(0, 1, 0));
+      // al_draw_text(font, al_map_rgb(0, 255, 0), 1024 / 2, 780 / 2, ALLEGRO_ALIGN_CENTRE, gameScene.getNameChars());
 
       // commit drawing
       al_flip_display();
@@ -134,7 +120,6 @@ int main(int argc, char **argv) {
     }
   }
 
-  // al_destroy_bitmap(image);
   al_destroy_font(font);
   al_destroy_display(display);
   al_destroy_timer(timer);
