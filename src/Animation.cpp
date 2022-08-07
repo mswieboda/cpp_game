@@ -1,6 +1,6 @@
-#include "Sprite.h"
+#include "Animation.h"
 
-Sprite::Sprite(int _fpsFactor, bool _centered) {
+Animation::Animation(int _fpsFactor, bool _centered) {
   height = 0;
   width = 0;
   frame = 0;
@@ -8,11 +8,11 @@ Sprite::Sprite(int _fpsFactor, bool _centered) {
   centered = _centered;
 }
 
-void Sprite::add(ALLEGRO_BITMAP* sheet, int x, int y, int w, int h) {
+void Animation::add(ALLEGRO_BITMAP* sheet, int x, int y, int w, int h) {
   ALLEGRO_BITMAP* sprite = al_create_sub_bitmap(sheet, x, y, w, h);
 
   if (!sprite)
-    printf(">>> Sprite#add !sprite\n");
+    printf(">>> Animation#add !sprite\n");
 
   sprites.push_back(sprite);
 
@@ -22,30 +22,30 @@ void Sprite::add(ALLEGRO_BITMAP* sheet, int x, int y, int w, int h) {
     width = w;
 }
 
-void Sprite::addBlank(int w, int h) {
+void Animation::addBlank(int w, int h) {
   ALLEGRO_BITMAP* sprite = al_create_bitmap(w, h);
   al_set_target_bitmap(sprite);
   al_clear_to_color(al_map_rgb(0, 0, 0));
   al_set_target_backbuffer(al_get_current_display());
 
   if (!sprite)
-    printf(">>> Sprite#addBlank !sprite\n");
+    printf(">>> Animation#addBlank !sprite\n");
 
   sprites.push_back(sprite);
 }
 
-int Sprite::displayFrame() {
+int Animation::displayFrame() {
   return frame / fpsFactor;
 }
 
-void Sprite::update() {
+void Animation::update() {
   frame++;
 
   if (frame >= sprites.size() * fpsFactor)
     frame = 0;
 }
 
-void Sprite::draw(int x, int y) {
+void Animation::draw(int x, int y) {
   ALLEGRO_BITMAP* sprite = sprites[displayFrame()];
   int drawX = x;
   int drawY = y;
@@ -58,7 +58,7 @@ void Sprite::draw(int x, int y) {
   al_draw_bitmap(sprite, drawX, drawY, 0);
 }
 
-void Sprite::destroy() {
+void Animation::destroy() {
   for (auto sprite: sprites)
     al_destroy_bitmap(sprite);
 }

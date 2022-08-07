@@ -4,18 +4,18 @@
 #include <iostream>
 #include <allegro5/allegro_image.h>
 #include "Keys.h"
-#include "Sprite.h"
+#include "Animation.h"
 
 class Player {
   public:
     Player();
 
-    void initSprite(ALLEGRO_BITMAP* sheet);
+    void initAnimation(ALLEGRO_BITMAP* sheet);
     void update(Keys keys);
     void draw();
     void destroy();
 
-    Sprite sprite;
+    Animation animation;
     int x;
     int y;
     int speed;

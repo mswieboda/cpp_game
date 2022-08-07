@@ -1,5 +1,5 @@
-#ifndef _SPRITE_H
-#define _SPRITE_H
+#ifndef _ANIMATION_H
+#define _ANIMATION_H
 
 #include <iostream>
 #include <vector>
@@ -8,9 +8,9 @@
 
 using namespace std;
 
-class Sprite {
+class Animation {
   public:
-    Sprite(int fpsFactor, bool centered);
+    Animation(int fpsFactor, bool centered);
 
     void add(ALLEGRO_BITMAP* sheet, int x, int y, int w, int h);
     void addBlank(int w, int h);

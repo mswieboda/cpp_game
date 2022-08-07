@@ -2,18 +2,18 @@
 
 #define FPS 60
 
-Player::Player(): sprite(FPS / 6, true) {
+Player::Player(): animation(FPS / 6, true) {
   x = 0;
   y = 0;
   speed = 0;
 }
 
-void Player::initSprite(ALLEGRO_BITMAP* sheet) {
-  sprite.add(sheet, 33, 10, 9, 9);
-  sprite.add(sheet, 43, 9, 11, 11);
-  sprite.add(sheet, 46, 21, 17, 18);
-  sprite.add(sheet, 46, 40, 17, 17);
-  sprite.addBlank(9, 9);
+void Player::initAnimation(ALLEGRO_BITMAP* sheet) {
+  animation.add(sheet, 33, 10, 9, 9);
+  animation.add(sheet, 43, 9, 11, 11);
+  animation.add(sheet, 46, 21, 17, 18);
+  animation.add(sheet, 46, 40, 17, 17);
+  animation.addBlank(9, 9);
 }
 
 void Player::update(Keys keys) {
@@ -26,13 +26,13 @@ void Player::update(Keys keys) {
   if (keys.anyPressed(2, ALLEGRO_KEY_RIGHT, ALLEGRO_KEY_D))
     x += speed;
 
-  sprite.update();
+  animation.update();
 }
 
 void Player::draw() {
-  sprite.draw(x, y);
+  animation.draw(x, y);
 }
 
 void Player::destroy() {
-  sprite.destroy();
+  animation.destroy();
 }
