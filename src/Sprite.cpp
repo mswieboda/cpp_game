@@ -1,8 +1,4 @@
-#include <iostream>
-#include <allegro5/allegro_image.h>
 #include "Sprite.h"
-
-using namespace std;
 
 Sprite::Sprite(int _fpsFactor, bool _centered) {
   height = 0;

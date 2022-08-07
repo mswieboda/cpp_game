@@ -1,13 +1,12 @@
 #ifndef _GAME_SCENE_H
 #define _GAME_SCENE_H
 
-// #include <allegro5/allegro_image.h>
-
+#include <iostream>
+#include <allegro5/allegro5.h>
+#include <allegro5/allegro_image.h>
 #include "Scene.h"
 #include "Keys.h"
 #include "Player.h"
-
-using namespace std;
 
 class GameScene: public Scene {
   public:
@@ -17,8 +16,11 @@ class GameScene: public Scene {
     void draw();
     void destroy();
 
+    void reset();
+
     Player player;
     ALLEGRO_BITMAP* sheet;
+    bool isExit;
 };
 
 #endif

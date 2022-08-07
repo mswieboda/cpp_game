@@ -1,12 +1,8 @@
-#include <cstdarg>
-#include <iostream>
-#include <allegro5/allegro5.h>
 #include "Keys.h"
-
-using namespace std;
 
 #define KEY_SEEN     1
 #define KEY_RELEASED 2
+#define KEY_PRESSED  3
 
 Keys::Keys() {
   memset(keys, 0, sizeof(keys));
@@ -18,7 +14,7 @@ void Keys::reset() {
 }
 
 void Keys::pressed(int keycode) {
-  keys[keycode] = KEY_SEEN | KEY_RELEASED;
+  keys[keycode] = KEY_PRESSED;
 }
 
 void Keys::released(int keycode) {
@@ -46,6 +42,41 @@ bool Keys::anyPressed(const int count, ...) {
   return false;
 }
 
-// bool Keys::isReleased(int keycode) {
-//   return keys[ALLEGRO_KEY_ESCAPE];
-// }
+bool Keys::anyPressed() {
+  for (int i = 0; i < ALLEGRO_KEY_MAX; i++) {
+    if (isPressed(i))
+      return true;
+  }
+
+  return false;
+}
+
+bool Keys::isJustPressed(int keycode) {
+  return keys[keycode] == KEY_PRESSED;
+}
+
+bool Keys::anyJustPressed(const int count, ...) {
+  va_list args;
+  va_start(args, count);
+
+  for (int i = 0; i < count; i++) {
+    int keycode = va_arg(args, int);
+
+    if (isJustPressed(keycode)) {
+      return true;
+    }
+  }
+
+  va_end(args);
+
+  return false;
+}
+
+bool Keys::anyJustPressed() {
+  for (int i = 0; i < ALLEGRO_KEY_MAX; i++) {
+    if (isJustPressed(i))
+      return true;
+  }
+
+  return false;
+}

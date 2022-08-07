@@ -1,11 +1,10 @@
 #ifndef _PLAYER_H
 #define _PLAYER_H
 
+#include <iostream>
 #include <allegro5/allegro_image.h>
 #include "Keys.h"
 #include "Sprite.h"
-
-using namespace std;
 
 class Player {
   public:

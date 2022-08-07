@@ -8,7 +8,6 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_primitives.h>
 
-#include "Box.h"
 #include "Keys.h"
 #include "MainMenu.h"
 #include "GameScene.h"
@@ -75,14 +74,23 @@ int main(int argc, char **argv) {
     switch(event.type) {
       case ALLEGRO_EVENT_TIMER:
         // TODO: vvv put in scene manager
-        if (keys.isPressed(ALLEGRO_KEY_1))
-          scene = &mainMenu;
+        if (scene == &mainMenu) {
+          if (mainMenu.isStart) {
+            mainMenu.reset();
+            scene = &gameScene;
+          }
 
-        if (keys.isPressed(ALLEGRO_KEY_2))
-          scene = &gameScene;
+          if (mainMenu.isExit) {
+            gameScene.reset();
+            done = true;
+          }
+        }
 
-        if (keys.isPressed(ALLEGRO_KEY_ESCAPE))
-          done = true;
+        if (scene == &gameScene) {
+          if (gameScene.isExit) {
+            scene = &mainMenu;
+          }
+        }
         // TODO: ^^^ put in scene manager
 
         // START GAME LOGIC

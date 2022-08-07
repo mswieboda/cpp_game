@@ -1,9 +1,4 @@
-#include <iostream>
-
 #include "Scene.h"
-#include "Keys.h"
-
-using namespace std;
 
 Scene::Scene(string _name) {
   name = _name;

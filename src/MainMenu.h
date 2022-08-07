@@ -2,7 +2,9 @@
 #define _MAIN_MENU_H
 
 #include <iostream>
-
+#include <allegro5/allegro5.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 #include "Scene.h"
 #include "Keys.h"
 
@@ -16,8 +18,12 @@ class MainMenu: public Scene {
     void draw();
     void destroy();
 
+    void reset();
+
     ALLEGRO_FONT* fontBig;
     ALLEGRO_FONT* fontNormal;
+    bool isStart;
+    bool isExit;
 };
 
 #endif

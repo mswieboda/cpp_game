@@ -1,9 +1,4 @@
-#include <iostream>
-#include <allegro5/allegro_image.h>
 #include "Player.h"
-#include "Keys.h"
-
-using namespace std;
 
 #define FPS 60
 

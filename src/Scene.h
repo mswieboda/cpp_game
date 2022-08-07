@@ -2,7 +2,6 @@
 #define _SCENE_H
 
 #include <iostream>
-
 #include "Keys.h"
 
 using namespace std;
