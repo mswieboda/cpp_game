@@ -1,14 +1,17 @@
 SHELL = /bin/sh
 CC = g++
+CC_FLAGS = -Wall
 ALLEGRO_FLAGS = $$(pkg-config allegro-5 allegro_main-5 allegro_font-5 allegro_ttf-5 allegro_image-5 allegro_primitives-5 --libs --cflags)
+OUT_FILE = build/main.o
+SOURCE_FILES = src/main.cpp src/Box.cpp
 
 build_and_run: clean run
 
 clean:
-	if [ -a ./build/main.o ]; then rm ./build/main.o; fi;
+	if [ -a ./${OUT_FILE} ]; then rm ./${OUT_FILE}; fi;
 
 build/main.o:
-	${CC} src/main.cpp -o build/main.o ${ALLEGRO_FLAGS}
+	${CC} ${SOURCE_FILES} -o ${OUT_FILE} ${ALLEGRO_FLAGS} ${CC_FLAGS}
 
 run: build/main.o
-	./build/main.o
+	./${OUT_FILE}

@@ -5,6 +5,8 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_primitives.h>
 
+#include "Box.h"
+
 void check_init(bool test, const char *description) {
     if (test) return;
 
@@ -56,8 +58,8 @@ int main(int argc, char **argv) {
   bool redraw = true;
   ALLEGRO_EVENT event;
 
-  float boxX = 100;
-  float boxY = 100;
+  Box box(333, 555, 300, 300);
+
   const float boxSpeed = 10;
 
   #define KEY_SEEN     1
@@ -75,13 +77,13 @@ int main(int argc, char **argv) {
       case ALLEGRO_EVENT_TIMER:
         // START GAME LOGIC
         if (key[ALLEGRO_KEY_UP] || key[ALLEGRO_KEY_W])
-          boxY -= boxSpeed;
+          box.y -= boxSpeed;
         if (key[ALLEGRO_KEY_DOWN] || key[ALLEGRO_KEY_S])
-          boxY += boxSpeed;
+          box.y += boxSpeed;
         if (key[ALLEGRO_KEY_LEFT] || key[ALLEGRO_KEY_A])
-          boxX -= boxSpeed;
+          box.x -= boxSpeed;
         if (key[ALLEGRO_KEY_RIGHT] || key[ALLEGRO_KEY_D])
-          boxX += boxSpeed;
+          box.x += boxSpeed;
 
         if (key[ALLEGRO_KEY_ESCAPE])
           done = true;
@@ -94,8 +96,8 @@ int main(int argc, char **argv) {
         break;
 
       case ALLEGRO_EVENT_MOUSE_AXES:
-        boxX = event.mouse.x;
-        boxY = event.mouse.y;
+        box.x = event.mouse.x;
+        box.y = event.mouse.y;
         break;
 
       case ALLEGRO_EVENT_KEY_DOWN:
@@ -123,7 +125,7 @@ int main(int argc, char **argv) {
       // al_draw_bitmap(image, 100, 100, 0);
 
       // primitives
-      al_draw_filled_rectangle(boxX, boxY, boxX + 30, boxY + 30, al_map_rgb_f(0, 1, 0));
+      al_draw_filled_rectangle(box.x, box.y, box.x + box.width, box.y + box.height, al_map_rgb_f(0, 1, 0));
 
       // commit drawing
       al_flip_display();
