@@ -1,6 +1,7 @@
 #ifndef _SPRITE_H
 #define _SPRITE_H
 
+#include <vector>
 #include <allegro5/allegro_image.h>
 
 using namespace std;
@@ -10,13 +11,13 @@ class Sprite {
     Sprite(int fpsFactor, bool centered);
 
     void add(ALLEGRO_BITMAP* sheet, int x, int y, int w, int h);
+    void addBlank(int w, int h);
     int displayFrame();
     void update();
     void draw();
     void destroy();
 
-    // vector<ALLEGRO_BITMAP *> sprites;
-    ALLEGRO_BITMAP* sprite;
+    vector<ALLEGRO_BITMAP*> sprites;
     int x;
     int y;
     int width;

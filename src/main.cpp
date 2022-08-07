@@ -1,15 +1,19 @@
+#include <iostream>
+#include <vector>
 #include <stdio.h>
 #include <stdlib.h>
-
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_primitives.h>
 
+#include "Box.h"
 #include "Keys.h"
 #include "MainMenu.h"
 #include "GameScene.h"
+
+using namespace std;
 
 #define FPS 60
 
