@@ -2,7 +2,7 @@
 
 #define FPS 60
 
-Player::Player(): animation(FPS / 6, true) {
+Player::Player(): animation(FPS / 3, true, true) {
   x = 0;
   y = 0;
   speed = 0;

@@ -1,11 +1,12 @@
 #include "Animation.h"
 
-Animation::Animation(int _fpsFactor, bool _centered) {
+Animation::Animation(int _fpsFactor, bool _loop, bool _centered) {
   height = 0;
   width = 0;
   frame = 0;
   fpsFactor = _fpsFactor;
   centered = _centered;
+  loop = _loop;
 }
 
 void Animation::add(ALLEGRO_BITMAP* sheet, int x, int y, int w, int h) {
@@ -39,9 +40,12 @@ int Animation::displayFrame() {
 }
 
 void Animation::update() {
-  frame++;
+  int maxFrames = sprites.size() * fpsFactor - 1;
 
-  if (frame >= sprites.size() * fpsFactor)
+  if (frame < maxFrames)
+    frame++;
+
+  if (loop && frame >= maxFrames)
     frame = 0;
 }
 

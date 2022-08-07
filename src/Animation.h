@@ -10,7 +10,7 @@ using namespace std;
 
 class Animation {
   public:
-    Animation(int fpsFactor, bool centered);
+    Animation(int fpsFactor, bool loop, bool centered);
 
     void add(ALLEGRO_BITMAP* sheet, int x, int y, int w, int h);
     void addBlank(int w, int h);
@@ -25,6 +25,7 @@ class Animation {
     int frame;
     int fpsFactor;
     bool centered;
+    bool loop;
 };
 
 #endif
