@@ -24,3 +24,7 @@ void Scene::update(Keys keys) {
 void Scene::draw() {
   cout << ">>> Scene " << name << " draw" << endl;
 }
+
+void Scene::destroy() {
+  cout << ">>> Scene " << name << " destroy" << endl;
+}

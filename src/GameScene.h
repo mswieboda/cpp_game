@@ -15,6 +15,7 @@ class GameScene: public Scene {
 
     void update(Keys keys);
     void draw();
+    void destroy();
 
     Box box;
 

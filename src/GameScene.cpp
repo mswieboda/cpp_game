@@ -27,3 +27,7 @@ void GameScene::update(Keys keys) {
 void GameScene::draw() {
   al_draw_filled_rectangle(box.x, box.y, box.x + box.width, box.y + box.height, al_map_rgb_f(0, 1, 0));
 }
+
+void GameScene::destroy() {
+
+}

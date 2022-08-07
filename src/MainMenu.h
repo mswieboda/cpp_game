@@ -14,6 +14,7 @@ class MainMenu: public Scene {
 
     void update(Keys keys);
     void draw();
+    void destroy();
 
     ALLEGRO_FONT* fontBig;
     ALLEGRO_FONT* fontNormal;

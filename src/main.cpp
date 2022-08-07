@@ -42,9 +42,6 @@ int main(int argc, char **argv) {
   ALLEGRO_DISPLAY* display = al_create_display(width, height);
   check_init(display, "display");
 
-  ALLEGRO_FONT* font = al_load_font("./assets/fonts/PressStart2P.ttf", 64, 0);
-  check_init(font, "font");
-
   al_hide_mouse_cursor(display);
 
   // add events to the event queue
@@ -124,7 +121,9 @@ int main(int argc, char **argv) {
     }
   }
 
-  al_destroy_font(font);
+  mainMenu.destroy();
+  gameScene.destroy();
+
   al_destroy_display(display);
   al_destroy_timer(timer);
   al_destroy_event_queue(queue);

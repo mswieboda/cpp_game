@@ -23,3 +23,8 @@ void MainMenu::draw() {
   al_draw_text(fontBig, al_map_rgb(0, 255, 0), 2048 / 2, 1440 / 3, ALLEGRO_ALIGN_CENTRE, getNameChars());
   al_draw_text(fontNormal, al_map_rgb(0, 255, 0), 2048 / 2, 1440 / 2, ALLEGRO_ALIGN_CENTRE, "press enter to start!");
 }
+
+void MainMenu::destroy() {
+  al_destroy_font(fontBig);
+  al_destroy_font(fontNormal);
+}

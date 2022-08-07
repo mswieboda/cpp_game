@@ -15,6 +15,7 @@ class Scene {
     const char * getNameChars();
     virtual void update(Keys keys);
     virtual void draw();
+    virtual void destroy();
 
   protected:
     string name;
