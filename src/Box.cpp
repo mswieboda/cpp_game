@@ -1,13 +1,18 @@
 #include "Box.h"
 
-Box::Box(int _x, int _y) {
-  x = _x;
-  y = _y;
+Box::Box() {
+  x = 0;
+  y = 0;
+  width = 0;
+  height = 0;
 }
 
-Box::Box(int _x, int _y, int _width, int _height) {
-  x = _x;
-  y = _y;
-  width = _width;
-  height = _height;
+Box::Box(int width, int height): Box() {
+  this->width = width;
+  this->height = height;
+}
+
+Box::Box(int x, int y, int width, int height): Box(width, height) {
+  this->x = x;
+  this->y = y;
 }

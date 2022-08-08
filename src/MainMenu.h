@@ -12,6 +12,7 @@ using namespace std;
 
 class MainMenu: public Scene {
   public:
+    MainMenu();
     MainMenu(string name);
 
     void update(Keys keys);

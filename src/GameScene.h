@@ -10,12 +10,14 @@
 
 class GameScene: public Scene {
   public:
+    GameScene();
     GameScene(string name);
 
     void update(Keys keys);
     void draw();
     void destroy();
 
+    void initPlayer();
     void reset();
 
     Player player;

@@ -9,13 +9,10 @@ Animation::Animation() {
   loop = true;
 }
 
-Animation::Animation(int _fpsFactor, bool _loop, bool _centered) {
-  height = 0;
-  width = 0;
-  frame = 0;
-  fpsFactor = _fpsFactor;
-  centered = _centered;
-  loop = _loop;
+Animation::Animation(int fpsFactor, bool loop, bool centered): Animation() {
+  this->fpsFactor = fpsFactor;
+  this->loop = loop;
+  this->centered = centered;
 }
 
 void Animation::add(ALLEGRO_BITMAP* sheet, int x, int y, int w, int h) {

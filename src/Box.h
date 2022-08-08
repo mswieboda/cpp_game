@@ -3,7 +3,8 @@
 
 class Box {
   public:
-    Box(int x, int y);
+    Box();
+    Box(int width, int height);
     Box(int x, int y, int width, int height);
 
     int x;

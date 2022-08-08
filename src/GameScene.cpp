@@ -2,11 +2,17 @@
 
 #define FPS 60
 
-GameScene::GameScene(string _name): Scene(_name), player() {
-  isExit = false;
-  name = _name;
+GameScene::GameScene(): Scene(), player() {
   sheet = al_load_bitmap("./assets/player.png");
 
+  initPlayer();
+}
+
+GameScene::GameScene(string name): GameScene() {
+  this->name = name;
+}
+
+void GameScene::initPlayer() {
   player.x = 100;
   player.y = 100;
   player.speed = 5;

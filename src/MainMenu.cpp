@@ -1,11 +1,13 @@
 #include "MainMenu.h"
 
-MainMenu::MainMenu(string _name): Scene(_name) {
+MainMenu::MainMenu(): Scene() {
   isStart = false;
-  isExit = false;
-  name = _name;
   fontBig = al_load_font("./assets/PressStart2P.ttf", 64, 0);
   fontNormal = al_load_font("./assets/PressStart2P.ttf", 24, 0);
+}
+
+MainMenu::MainMenu(string name): MainMenu() {
+  this->name = name;
 }
 
 void MainMenu::update(Keys keys) {

@@ -1,11 +1,12 @@
 #include "Scene.h"
 
-Scene::Scene(string _name) {
-  name = _name;
+Scene::Scene() {
+  name = "";
+  isExit = false;
 }
 
-string Scene::getName() {
-  return name;
+Scene::Scene(string name): Scene() {
+  this->name = name;
 }
 
 const char * Scene::getNameChars() {
