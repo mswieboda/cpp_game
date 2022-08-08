@@ -81,13 +81,14 @@ int main(int argc, char **argv) {
           }
 
           if (mainMenu.isExit) {
-            gameScene.reset();
+            mainMenu.reset();
             done = true;
           }
         }
 
         if (scene == &gameScene) {
           if (gameScene.isExit) {
+            gameScene.reset();
             scene = &mainMenu;
           }
         }

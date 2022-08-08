@@ -30,4 +30,5 @@ void MainMenu::destroy() {
 
 void MainMenu::reset() {
   isStart = false;
+  isExit = false;
 }
