@@ -1,19 +1,30 @@
 #include "Player.h"
 
 #define FPS 60
-
-Player::Player(): animation(FPS / 3, true, true) {
+Player::Player(): animations() {
   x = 0;
   y = 0;
   speed = 0;
 }
 
-void Player::initAnimation(ALLEGRO_BITMAP* sheet) {
-  animation.add(sheet, 33, 10, 9, 9);
-  animation.add(sheet, 43, 9, 11, 11);
-  animation.add(sheet, 46, 21, 17, 18);
-  animation.add(sheet, 46, 40, 17, 17);
-  animation.addBlank(9, 9);
+void Player::initAnimations(ALLEGRO_BITMAP* sheet) {
+  Animation spark(FPS, true, true);
+  Animation explosion(FPS / 3, true, true);
+
+  spark.add(sheet, 34, 0, 10, 8);
+  spark.add(sheet, 45, 0, 7, 8);
+  spark.add(sheet, 54, 0, 9, 8);
+
+  explosion.add(sheet, 33, 10, 9, 9);
+  explosion.add(sheet, 43, 9, 11, 11);
+  explosion.add(sheet, 46, 21, 17, 18);
+  explosion.add(sheet, 46, 40, 17, 17);
+  explosion.addBlank(9, 9);
+
+  animations.add(spark, "spark");
+  animations.add(explosion, "explosion");
+
+  animations.play("spark");
 }
 
 void Player::update(Keys keys) {
@@ -26,13 +37,19 @@ void Player::update(Keys keys) {
   if (keys.anyPressed(2, ALLEGRO_KEY_RIGHT, ALLEGRO_KEY_D))
     x += speed;
 
-  animation.update();
+  if (keys.isJustPressed(ALLEGRO_KEY_1))
+    animations.play("spark");
+
+  if (keys.isJustPressed(ALLEGRO_KEY_2))
+    animations.play("explosion");
+
+  animations.update();
 }
 
 void Player::draw() {
-  animation.draw(x, y);
+  animations.draw(x, y);
 }
 
 void Player::destroy() {
-  animation.destroy();
+  animations.destroy();
 }

@@ -1,5 +1,14 @@
 #include "Animation.h"
 
+Animation::Animation() {
+  height = 0;
+  width = 0;
+  frame = 0;
+  fpsFactor = 60;
+  centered = true;
+  loop = true;
+}
+
 Animation::Animation(int _fpsFactor, bool _loop, bool _centered) {
   height = 0;
   width = 0;
@@ -51,6 +60,10 @@ void Animation::update() {
 
 void Animation::draw(int x, int y) {
   ALLEGRO_BITMAP* sprite = sprites[displayFrame()];
+
+  if (!sprite)
+    cout << "> Animation::draw sprite IS NULL" << endl;
+
   int drawX = x;
   int drawY = y;
 

@@ -10,6 +10,7 @@ using namespace std;
 
 class Animation {
   public:
+    Animation();
     Animation(int fpsFactor, bool loop, bool centered);
 
     void add(ALLEGRO_BITMAP* sheet, int x, int y, int w, int h);

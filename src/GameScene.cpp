@@ -11,7 +11,7 @@ GameScene::GameScene(string _name): Scene(_name), player() {
   player.y = 100;
   player.speed = 10;
 
-  player.initAnimation(sheet);
+  player.initAnimations(sheet);
 }
 
 void GameScene::update(Keys keys) {
