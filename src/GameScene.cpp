@@ -5,11 +5,11 @@
 GameScene::GameScene(string _name): Scene(_name), player() {
   isExit = false;
   name = _name;
-  sheet = al_load_bitmap("./assets/spritesheet.png");
+  sheet = al_load_bitmap("./assets/player.png");
 
   player.x = 100;
   player.y = 100;
-  player.speed = 10;
+  player.speed = 5;
 
   player.initAnimations(sheet);
 }

@@ -8,23 +8,18 @@ Player::Player(): animations() {
 }
 
 void Player::initAnimations(ALLEGRO_BITMAP* sheet) {
-  Animation spark(FPS, true, true);
-  Animation explosion(FPS / 3, true, true);
+  Animation idle(FPS / 3, true, true);
 
-  spark.add(sheet, 34, 0, 10, 8);
-  spark.add(sheet, 45, 0, 7, 8);
-  spark.add(sheet, 54, 0, 9, 8);
+  const int frames = 5;
+  const int size = 64;
 
-  explosion.add(sheet, 33, 10, 9, 9);
-  explosion.add(sheet, 43, 9, 11, 11);
-  explosion.add(sheet, 46, 21, 17, 18);
-  explosion.add(sheet, 46, 40, 17, 17);
-  explosion.addBlank(9, 9);
+  for (int i = 0; i < frames; i++) {
+    idle.add(sheet, i * size, 0, size, size);
+  }
 
-  animations.add(spark, "spark");
-  animations.add(explosion, "explosion");
+  animations.add(idle, "idle");
 
-  animations.play("spark");
+  animations.play("idle");
 }
 
 void Player::update(Keys keys) {
@@ -38,7 +33,7 @@ void Player::update(Keys keys) {
     x += speed;
 
   if (keys.isJustPressed(ALLEGRO_KEY_1))
-    animations.play("spark");
+    animations.play("idle");
 
   if (keys.isJustPressed(ALLEGRO_KEY_2))
     animations.play("explosion");
