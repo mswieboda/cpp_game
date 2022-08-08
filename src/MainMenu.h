@@ -7,6 +7,7 @@
 #include <allegro5/allegro_ttf.h>
 #include "Scene.h"
 #include "Keys.h"
+#include "ui/Button.h"
 
 using namespace std;
 
@@ -19,12 +20,14 @@ class MainMenu: public Scene {
     void draw();
     void destroy();
 
+    void initUI();
     void reset();
 
     ALLEGRO_FONT* fontBig;
     ALLEGRO_FONT* fontNormal;
     bool isStart;
     bool isExit;
+    Button button;
 };
 
 #endif

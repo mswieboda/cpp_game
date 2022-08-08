@@ -49,7 +49,7 @@ int main(int argc, char **argv) {
   ALLEGRO_DISPLAY* display = al_create_display(width, height);
   check_init(display, "display");
 
-  al_hide_mouse_cursor(display);
+  // al_hide_mouse_cursor(display);
 
   // add events to the event queue
   al_register_event_source(queue, al_get_keyboard_event_source());
