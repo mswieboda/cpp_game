@@ -77,11 +77,14 @@ int main(int argc, char **argv) {
         if (scene == &mainMenu) {
           if (mainMenu.isStart) {
             mainMenu.reset();
+            gameScene.init();
+
             scene = &gameScene;
           }
 
           if (mainMenu.isExit) {
             mainMenu.reset();
+
             done = true;
           }
         }
@@ -89,6 +92,7 @@ int main(int argc, char **argv) {
         if (scene == &gameScene) {
           if (gameScene.isExit) {
             gameScene.reset();
+
             scene = &mainMenu;
           }
         }

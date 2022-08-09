@@ -73,6 +73,6 @@ void Animation::draw(int x, int y) {
 }
 
 void Animation::destroy() {
-  for (auto sprite: sprites)
+  for (auto sprite : sprites)
     al_destroy_bitmap(sprite);
 }

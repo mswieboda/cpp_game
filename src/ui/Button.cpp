@@ -24,6 +24,10 @@ Button::Button(ALLEGRO_FONT* font, string text, int x, int y, int width, int hei
   this->y = y;
 }
 
+void Button::update() {
+
+}
+
 void Button::draw() {
   al_draw_filled_rectangle(x, y, x + width, y + height, al_map_rgb_f(0, 1, 0));
 

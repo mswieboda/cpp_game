@@ -27,7 +27,7 @@ void MainMenu::update(Keys keys) {
     return;
   }
 
-  if (keys.anyJustPressed())
+  if (keys.isJustPressed(ALLEGRO_KEY_SPACE))
     isStart = true;
 }
 

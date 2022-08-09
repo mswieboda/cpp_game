@@ -17,7 +17,7 @@ class Button: public Box {
     Button(ALLEGRO_FONT* font, string text, int width, int height);
     Button(ALLEGRO_FONT* font, string text, int x, int y, int width, int height);
 
-    // void update();
+    void update();
     void draw();
     void destroy();
 

@@ -1,15 +1,43 @@
 #include "GameScene.h"
+#include <vector>
+#include "Tile.h"
 
 #define FPS 60
+#define ROWS 3
+#define COLS 10
 
-GameScene::GameScene(): Scene(), player() {
+GameScene::GameScene(): Scene(), map(), player()  {
   sheet = al_load_bitmap("./assets/player.png");
-
-  initPlayer();
 }
 
 GameScene::GameScene(string name): GameScene() {
   this->name = name;
+}
+
+void GameScene::init() {
+  initMap();
+  initPlayer();
+}
+
+void GameScene::initMap() {
+  vector<vector<Tile>> tiles;
+
+  for (int row = 0; row < ROWS; row++) {
+    vector<Tile> tileRow;
+
+    for (int col = 0; col < COLS; col++) {
+      Tile tile(row, col);
+      tileRow.push_back(tile);
+    }
+
+    tiles.push_back(tileRow);
+  }
+
+  map.tiles = tiles;
+
+  for (auto tileRow : map.tiles)
+    for (auto tile : tileRow)
+      tile.print();
 }
 
 void GameScene::initPlayer() {
@@ -30,6 +58,7 @@ void GameScene::update(Keys keys) {
 }
 
 void GameScene::draw() {
+  map.draw();
   player.draw();
 }
 

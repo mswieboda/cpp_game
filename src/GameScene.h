@@ -6,6 +6,7 @@
 #include <allegro5/allegro_image.h>
 #include "Scene.h"
 #include "Keys.h"
+#include "Map.h"
 #include "Player.h"
 
 class GameScene: public Scene {
@@ -17,12 +18,17 @@ class GameScene: public Scene {
     void draw();
     void destroy();
 
-    void initPlayer();
+    void init();
     void reset();
 
+    Map map;
     Player player;
     ALLEGRO_BITMAP* sheet;
     bool isExit;
+
+  private:
+    void initMap();
+    void initPlayer();
 };
 
 #endif
