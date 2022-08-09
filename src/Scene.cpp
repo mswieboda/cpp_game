@@ -4,9 +4,7 @@ Scene::Scene() {
   isExit = false;
 }
 
-void Scene::init() {
-  reset();
-}
+void Scene::init() {}
 
 void Scene::update(Keys keys) {}
 

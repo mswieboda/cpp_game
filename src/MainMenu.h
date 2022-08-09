@@ -7,7 +7,6 @@
 #include <allegro5/allegro_ttf.h>
 #include "Scene.h"
 #include "Keys.h"
-#include "ui/Button.h"
 
 using namespace std;
 
@@ -15,7 +14,6 @@ class MainMenu: public Scene {
   public:
     MainMenu();
 
-    void init() override;
     void update(Keys keys) override;
     void draw() override;
     void destroy() override;
@@ -24,7 +22,6 @@ class MainMenu: public Scene {
     ALLEGRO_FONT* fontBig;
     ALLEGRO_FONT* fontNormal;
     bool isStart;
-    Button button;
 
   private:
     void initUI();
