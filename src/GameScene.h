@@ -14,12 +14,11 @@ class GameScene: public Scene {
     GameScene();
     GameScene(string name);
 
-    void update(Keys keys);
-    void draw();
-    void destroy();
+    void init() override;
+    void update(Keys keys) override;
+    void draw() override;
+    void destroy() override;
 
-    void init();
-    void reset();
 
     Map map;
     Player player;

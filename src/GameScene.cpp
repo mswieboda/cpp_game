@@ -10,11 +10,8 @@ GameScene::GameScene(): Scene(), map(), player()  {
   sheet = al_load_bitmap("./assets/player.png");
 }
 
-GameScene::GameScene(string name): GameScene() {
-  this->name = name;
-}
-
 void GameScene::init() {
+  Scene::init();
   initMap();
   initPlayer();
 }
@@ -61,8 +58,4 @@ void GameScene::draw() {
 void GameScene::destroy() {
   player.destroy();
   al_destroy_bitmap(sheet);
-}
-
-void GameScene::reset() {
-  isExit = false;
 }

@@ -9,16 +9,13 @@ using namespace std;
 class Scene {
   public:
     Scene();
-    Scene(string name);
 
     virtual void init();
     virtual void update(Keys keys);
     virtual void draw();
+    virtual void reset();
     virtual void destroy();
 
-    const char * getNameChars();
-
-    string name;
     bool isExit;
 };
 

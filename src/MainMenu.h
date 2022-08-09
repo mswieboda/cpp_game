@@ -14,19 +14,20 @@ using namespace std;
 class MainMenu: public Scene {
   public:
     MainMenu();
-    MainMenu(string name);
 
-    void update(Keys keys);
-    void draw();
-    void destroy();
-
-    void initUI();
-    void reset();
+    void init() override;
+    void update(Keys keys) override;
+    void draw() override;
+    void destroy() override;
+    void reset() override;
 
     ALLEGRO_FONT* fontBig;
     ALLEGRO_FONT* fontNormal;
     bool isStart;
     Button button;
+
+  private:
+    void initUI();
 };
 
 #endif
