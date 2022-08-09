@@ -19,16 +19,16 @@ void Tile::update() {
 }
 
 void Tile::draw(int x, int y) {
-  ALLEGRO_COLOR color = al_map_rgb_f(0, 1, 0);
+  ALLEGRO_COLOR color = al_map_rgba_f(0, 0.13, 0, 0.13);
 
   // TODO: refactor into one line?
   if (row % 2 != 0) {
     if (col % 2 != 0) {
-      color = al_map_rgb_f(0, 0, 1);
+      color = al_map_rgba_f(0, 0, 0.13, 0.13);
     }
   } else {
     if (col % 2 == 0) {
-      color = al_map_rgb_f(0, 0, 1);
+      color = al_map_rgba_f(0, 0, 0.13, 0.13);
     }
   }
 
