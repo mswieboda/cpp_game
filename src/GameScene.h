@@ -24,7 +24,6 @@ class GameScene: public Scene {
     Map map;
     Player player;
     ALLEGRO_BITMAP* sheet;
-    bool isExit;
 
   private:
     void initMap();

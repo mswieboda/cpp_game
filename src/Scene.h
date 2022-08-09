@@ -11,10 +11,12 @@ class Scene {
     Scene();
     Scene(string name);
 
-    const char * getNameChars();
+    virtual void init();
     virtual void update(Keys keys);
     virtual void draw();
     virtual void destroy();
+
+    const char * getNameChars();
 
     string name;
     bool isExit;

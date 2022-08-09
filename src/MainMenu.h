@@ -26,7 +26,6 @@ class MainMenu: public Scene {
     ALLEGRO_FONT* fontBig;
     ALLEGRO_FONT* fontNormal;
     bool isStart;
-    bool isExit;
     Button button;
 };
 

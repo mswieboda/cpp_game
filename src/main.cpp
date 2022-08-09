@@ -76,24 +76,24 @@ int main(int argc, char **argv) {
         // TODO: vvv put in scene manager
         if (scene == &mainMenu) {
           if (mainMenu.isStart) {
+            scene = &gameScene;
+
             mainMenu.reset();
             gameScene.init();
-
-            scene = &gameScene;
           }
 
           if (mainMenu.isExit) {
-            mainMenu.reset();
-
             done = true;
+
+            mainMenu.reset();
           }
         }
 
         if (scene == &gameScene) {
           if (gameScene.isExit) {
-            gameScene.reset();
-
             scene = &mainMenu;
+
+            gameScene.reset();
           }
         }
         // TODO: ^^^ put in scene manager

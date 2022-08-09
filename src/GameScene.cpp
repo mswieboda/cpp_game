@@ -34,10 +34,6 @@ void GameScene::initMap() {
   }
 
   map.tiles = tiles;
-
-  for (auto tileRow : map.tiles)
-    for (auto tile : tileRow)
-      tile.print();
 }
 
 void GameScene::initPlayer() {

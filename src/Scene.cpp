@@ -9,8 +9,8 @@ Scene::Scene(string name): Scene() {
   this->name = name;
 }
 
-const char * Scene::getNameChars() {
-  return name.c_str();
+void Scene::init() {
+  cout << ">>> Scene " << name << " init" << endl;
 }
 
 void Scene::update(Keys keys) {
@@ -23,4 +23,8 @@ void Scene::draw() {
 
 void Scene::destroy() {
   cout << ">>> Scene " << name << " destroy" << endl;
+}
+
+const char * Scene::getNameChars() {
+  return name.c_str();
 }
