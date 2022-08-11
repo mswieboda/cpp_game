@@ -12,9 +12,10 @@
 
 using namespace std;
 
+#define WIDTH 1024
+#define HEIGHT 780
+
 #define FPS 60
-#define WIDTH 2048
-#define HEIGHT 1440
 
 void check_init(bool test, const char *description) {
     if (test) return;
@@ -46,6 +47,9 @@ int main(int argc, char **argv) {
   ALLEGRO_DISPLAY* display = al_create_display(WIDTH, HEIGHT);
   check_init(display, "display");
 
+  // set to fullscreen windowed
+  al_set_display_flag(display, ALLEGRO_FULLSCREEN_WINDOW, true);
+
   // al_hide_mouse_cursor(display);
 
   // add events to the event queue
@@ -56,7 +60,10 @@ int main(int argc, char **argv) {
 
   ALLEGRO_EVENT event;
 
-  SceneManager sceneManager;
+  int screen_width = al_get_display_width(display);
+  int screen_height = al_get_display_height(display);
+
+  SceneManager sceneManager(screen_width, screen_height);
 
   al_start_timer(timer);
 

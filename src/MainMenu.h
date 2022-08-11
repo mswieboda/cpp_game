@@ -13,6 +13,7 @@ using namespace std;
 class MainMenu: public Scene {
   public:
     MainMenu();
+    MainMenu(int screen_width, int screen_height);
 
     void update(Keys keys) override;
     void draw() override;
@@ -25,6 +26,8 @@ class MainMenu: public Scene {
 
   private:
     void initUI();
+    int screen_width;
+    int screen_height;
 };
 
 #endif

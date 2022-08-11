@@ -5,6 +5,11 @@ SceneManager::SceneManager(): Scene(), keys(), mainMenu(), gameScene() {
   scene = &mainMenu;
 }
 
+SceneManager::SceneManager(int screen_width, int screen_height): Scene(), keys(), mainMenu(screen_width, screen_height), gameScene() {
+  redraw = false;
+  scene = &mainMenu;
+}
+
 void SceneManager::update(ALLEGRO_EVENT event) {
   switch(event.type) {
     case ALLEGRO_EVENT_TIMER:

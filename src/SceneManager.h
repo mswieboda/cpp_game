@@ -13,6 +13,7 @@ using namespace std;
 class SceneManager: public Scene {
   public:
     SceneManager();
+    SceneManager(int screen_width, int screen_height);
 
     void update(ALLEGRO_EVENT event);
     void update(Keys keys) override;
