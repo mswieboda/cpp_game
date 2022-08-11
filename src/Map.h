@@ -5,6 +5,7 @@
 #include <vector>
 #include "Tile.h"
 #include "Ground.h"
+#include "Coal.h"
 
 using namespace std;
 
@@ -20,7 +21,9 @@ class Map {
     int y;
     int width;
     int height;
+
     vector<vector<Ground>> groundTiles;
+    vector<vector<Coal>> coalTiles;
     vector<vector<Tile>> tiles;
 };
 

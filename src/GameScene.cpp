@@ -2,6 +2,7 @@
 #include <vector>
 #include "Tile.h"
 #include "Ground.h"
+#include "Coal.h"
 
 #define FPS 60
 
@@ -18,6 +19,7 @@ void GameScene::init() {
 }
 
 void GameScene::initMap() {
+  // ground
   int groundRows = 16;
   int groundCols = 24;
 
@@ -30,6 +32,23 @@ void GameScene::initMap() {
     }
 
     map.groundTiles.push_back(tileRow);
+  }
+
+  // coal patches
+  int initCoalRows = 3;
+  int initCoalCols = 3;
+  int coalRows = 3;
+  int coalCols = 3;
+
+  for (int row = initCoalRows; row < initCoalRows + coalRows; row++) {
+    vector<Coal> tileRow;
+
+    for (int col = initCoalCols; col < initCoalCols + coalCols; col++) {
+      Coal coal(row, col);
+      tileRow.push_back(coal);
+    }
+
+    map.coalTiles.push_back(tileRow);
   }
 }
 
