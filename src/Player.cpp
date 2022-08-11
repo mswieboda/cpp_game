@@ -1,9 +1,8 @@
 #include "Player.h"
 
 #define FPS 60
-Player::Player(): animations() {
-  x = 0;
-  y = 0;
+
+Player::Player(): AnimationsObj() {
   speed = 0;
 }
 
@@ -31,6 +30,8 @@ void Player::initAnimations(ALLEGRO_BITMAP* sheet) {
 }
 
 void Player::update(Keys keys) {
+  AnimationsObj::update();
+
   int dx = 0;
   int dy = 0;
 
@@ -51,14 +52,4 @@ void Player::update(Keys keys) {
     x += dx;
     y += dy;
   }
-
-  animations.update();
-}
-
-void Player::draw() {
-  animations.draw(x, y);
-}
-
-void Player::destroy() {
-  animations.destroy();
 }

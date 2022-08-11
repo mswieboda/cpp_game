@@ -52,7 +52,7 @@ void GameScene::update(Keys keys) {
 
 void GameScene::draw() {
   map.draw();
-  player.draw();
+  player.draw(0, 0);
 }
 
 void GameScene::destroy() {
