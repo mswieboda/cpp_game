@@ -4,17 +4,21 @@
 #include <iostream>
 #include <allegro5/allegro_primitives.h>
 #include "Tile.h"
+#include "Mouse.h"
 
 class Coal: public Tile {
   public:
     Coal();
     Coal(int row, int col);
 
-    virtual void update();
-    virtual void draw(int x, int y);
-    virtual void destroy();
+    void update(Mouse mouse);
+    void draw(int x, int y);
+    void destroy();
 
-    virtual void print();
+    void print();
+
+    bool hovering;
+    int num;
 };
 
 #endif

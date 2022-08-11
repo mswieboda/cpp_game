@@ -8,13 +8,12 @@ class Tile {
   public:
     Tile();
     Tile(int row, int col);
-    virtual ~Tile() = default;
 
-    virtual void update();
-    virtual void draw(int x, int y);
-    virtual void destroy();
+    void update();
+    void draw(int x, int y);
+    void destroy();
 
-    virtual void print();
+    void print();
 
     int row;
     int col;

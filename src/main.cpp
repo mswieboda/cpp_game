@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
   check_init(display, "display");
 
   // set to fullscreen windowed
-  al_set_display_flag(display, ALLEGRO_FULLSCREEN_WINDOW, true);
+  // al_set_display_flag(display, ALLEGRO_FULLSCREEN_WINDOW, true);
 
   // al_hide_mouse_cursor(display);
 

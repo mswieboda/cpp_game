@@ -7,6 +7,7 @@
 #include <allegro5/allegro_image.h>
 #include "Scene.h"
 #include "Keys.h"
+#include "Mouse.h"
 #include "Map.h"
 #include "Player.h"
 #include "Ground.h"
@@ -19,7 +20,7 @@ class GameScene: public Scene {
     GameScene(string name);
 
     void init() override;
-    void update(Keys keys) override;
+    void update(Keys keys, Mouse mouse) override;
     void draw() override;
     void destroy() override;
 

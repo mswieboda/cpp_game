@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Keys.h"
+#include "Mouse.h"
 
 using namespace std;
 
@@ -11,7 +12,7 @@ class Scene {
     Scene();
 
     virtual void init();
-    virtual void update(Keys keys);
+    virtual void update(Keys keys, Mouse mouse);
     virtual void draw();
     virtual void reset();
     virtual void destroy();

@@ -4,15 +4,31 @@ using namespace std;
 
 #define SIZE 64
 
-Ground::Ground(): Tile() {}
+Ground::Ground(): Tile() {
+  xyz = 0;
+  cout << "> Ground::Ground()";
+  print();
+  cout << endl;
+}
 
-Ground::Ground(int row, int col): Tile(row, col) {}
+Ground::Ground(int row, int col): Tile(row, col) {
+  xyz = 3;
+  cout << "> Ground::Ground(row, col)";
+  print();
+  cout << endl;
+}
 
 void Ground::update() {
-
+  xyz = 13;
+  // cout << "> Ground::update";
+  // print();
+  // cout << endl;
 }
 
 void Ground::draw(int x, int y) {
+  // cout << "> Ground::draw";
+  // print();
+  // cout << endl;
   ALLEGRO_COLOR color = al_map_rgb(212, 139, 68);
 
   x += col * SIZE;
@@ -29,5 +45,6 @@ void Ground::print() {
   cout << "> Ground";
   cout << " (" << row;
   cout << ", " << col << ")";
-  cout << endl;
+  cout << " xyz: " << xyz;
+  // cout << endl;
 }

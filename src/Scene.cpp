@@ -6,7 +6,7 @@ Scene::Scene() {
 
 void Scene::init() {}
 
-void Scene::update(Keys keys) {}
+void Scene::update(Keys keys, Mouse mouse) {}
 
 void Scene::draw() {}
 

@@ -5,6 +5,7 @@
 #include <allegro5/allegro5.h>
 #include "Scene.h"
 #include "Keys.h"
+#include "Mouse.h"
 #include "MainMenu.h"
 #include "GameScene.h"
 
@@ -16,7 +17,7 @@ class SceneManager: public Scene {
     SceneManager(int screen_width, int screen_height);
 
     void update(ALLEGRO_EVENT event);
-    void update(Keys keys) override;
+    void update(Keys keys, Mouse mouse) override;
     void draw() override;
     void destroy() override;
 
@@ -27,6 +28,7 @@ class SceneManager: public Scene {
     void switchScene(Scene* nextScene);
 
     Keys keys;
+    Mouse mouse;
     Scene* scene;
 
     MainMenu mainMenu;

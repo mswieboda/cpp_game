@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <vector>
+#include <functional>
+#include "Mouse.h"
 #include "Tile.h"
 #include "Ground.h"
 #include "Coal.h"
@@ -13,7 +15,7 @@ class Map {
   public:
     Map();
 
-    void update();
+    void update(Mouse mouse);
     void draw();
     void destroy();
 
@@ -22,9 +24,11 @@ class Map {
     int width;
     int height;
 
-    vector<vector<Ground>> groundTiles;
-    vector<vector<Coal>> coalTiles;
-    vector<vector<Tile>> tiles;
+    vector<reference_wrapper<Ground>> groundTiles;
+    vector<reference_wrapper<Coal>> coalTiles;
+    vector<reference_wrapper<Tile>> tiles;
+
+    Coal coal;
 };
 
 #endif

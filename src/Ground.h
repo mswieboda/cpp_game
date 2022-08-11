@@ -10,11 +10,13 @@ class Ground: public Tile {
     Ground();
     Ground(int row, int col);
 
-    virtual void update();
-    virtual void draw(int x, int y);
-    virtual void destroy();
+    void update();
+    void draw(int x, int y);
+    void destroy();
 
-    virtual void print();
+    void print();
+
+    int xyz;
 };
 
 #endif

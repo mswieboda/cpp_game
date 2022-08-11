@@ -7,6 +7,7 @@
 #include <allegro5/allegro_ttf.h>
 #include "Scene.h"
 #include "Keys.h"
+#include "Mouse.h"
 
 using namespace std;
 
@@ -15,7 +16,7 @@ class MainMenu: public Scene {
     MainMenu();
     MainMenu(int screen_width, int screen_height);
 
-    void update(Keys keys) override;
+    void update(Keys keys, Mouse mouse) override;
     void draw() override;
     void destroy() override;
     void reset() override;

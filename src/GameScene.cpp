@@ -1,5 +1,6 @@
 #include "GameScene.h"
 #include <vector>
+#include <functional>
 #include "Tile.h"
 #include "Ground.h"
 #include "Coal.h"
@@ -20,18 +21,14 @@ void GameScene::init() {
 
 void GameScene::initMap() {
   // ground
-  int groundRows = 16;
-  int groundCols = 24;
+  int groundRows = 3;
+  int groundCols = 3;
 
   for (int row = 0; row < groundRows; row++) {
-    vector<Ground> tileRow;
-
     for (int col = 0; col < groundCols; col++) {
       Ground ground(row, col);
-      tileRow.push_back(ground);
+      map.groundTiles.push_back(ref(ground));
     }
-
-    map.groundTiles.push_back(tileRow);
   }
 
   // coal patches
@@ -41,15 +38,14 @@ void GameScene::initMap() {
   int coalCols = 3;
 
   for (int row = initCoalRows; row < initCoalRows + coalRows; row++) {
-    vector<Coal> tileRow;
-
     for (int col = initCoalCols; col < initCoalCols + coalCols; col++) {
       Coal coal(row, col);
-      tileRow.push_back(coal);
+      map.coalTiles.push_back(ref(coal));
     }
-
-    map.coalTiles.push_back(tileRow);
   }
+
+  map.coal.row = 3;
+  map.coal.col = 3;
 }
 
 void GameScene::initPlayer() {
@@ -60,12 +56,13 @@ void GameScene::initPlayer() {
   player.initAnimations(sheet);
 }
 
-void GameScene::update(Keys keys) {
+void GameScene::update(Keys keys, Mouse mouse) {
   if (keys.isJustPressed(ALLEGRO_KEY_ESCAPE)) {
     isExit = true;
     return;
   }
 
+  map.update(mouse);
   player.update(keys);
 }
 

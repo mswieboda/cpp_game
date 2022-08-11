@@ -13,7 +13,7 @@ MainMenu::MainMenu(int screen_width, int screen_height): MainMenu() {
   this->screen_height = screen_height;
 }
 
-void MainMenu::update(Keys keys) {
+void MainMenu::update(Keys keys, Mouse mouse) {
   if (keys.isJustPressed(ALLEGRO_KEY_ESCAPE)) {
     isExit = true;
     return;
