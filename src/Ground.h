@@ -1,23 +1,20 @@
-#ifndef _TILE_H
-#define _TILE_H
+#ifndef _GROUND_H
+#define _GROUND_H
 
 #include <iostream>
 #include <allegro5/allegro_primitives.h>
+#include "Tile.h"
 
-class Tile {
+class Ground: public Tile {
   public:
-    Tile();
-    Tile(int row, int col);
-    virtual ~Tile() = default;
+    Ground();
+    Ground(int row, int col);
 
     virtual void update();
     virtual void draw(int x, int y);
     virtual void destroy();
 
     virtual void print();
-
-    int row;
-    int col;
 };
 
 #endif

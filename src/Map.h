@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "Tile.h"
+#include "Ground.h"
 
 using namespace std;
 
@@ -19,6 +20,7 @@ class Map {
     int y;
     int width;
     int height;
+    vector<vector<Ground>> groundTiles;
     vector<vector<Tile>> tiles;
 };
 

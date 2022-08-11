@@ -1,12 +1,13 @@
 #include "GameScene.h"
 #include <vector>
 #include "Tile.h"
+#include "Ground.h"
 
 #define FPS 60
-#define ROWS 3
-#define COLS 10
 
-GameScene::GameScene(): Scene(), map(), player()  {
+using namespace std;
+
+GameScene::GameScene(): Scene(), map(), player() {
   sheet = al_load_bitmap("./assets/player.png");
 }
 
@@ -17,20 +18,19 @@ void GameScene::init() {
 }
 
 void GameScene::initMap() {
-  vector<vector<Tile>> tiles;
+  int groundRows = 16;
+  int groundCols = 24;
 
-  for (int row = 0; row < ROWS; row++) {
-    vector<Tile> tileRow;
+  for (int row = 0; row < groundRows; row++) {
+    vector<Ground> tileRow;
 
-    for (int col = 0; col < COLS; col++) {
-      Tile tile(row, col);
-      tileRow.push_back(tile);
+    for (int col = 0; col < groundCols; col++) {
+      Ground ground(row, col);
+      tileRow.push_back(ground);
     }
 
-    tiles.push_back(tileRow);
+    map.groundTiles.push_back(tileRow);
   }
-
-  map.tiles = tiles;
 }
 
 void GameScene::initPlayer() {

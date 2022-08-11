@@ -2,12 +2,16 @@
 #define _GAME_SCENE_H
 
 #include <iostream>
+#include <vector>
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_image.h>
 #include "Scene.h"
 #include "Keys.h"
 #include "Map.h"
 #include "Player.h"
+#include "Ground.h"
+
+using namespace std;
 
 class GameScene: public Scene {
   public:

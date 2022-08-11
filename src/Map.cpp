@@ -12,6 +12,10 @@ void Map::update() {
 }
 
 void Map::draw() {
+  for (auto tileRow : groundTiles)
+    for (auto tile : tileRow)
+      tile.draw(x, y);
+
   for (auto tileRow : tiles)
     for (auto tile : tileRow)
       tile.draw(x, y);
